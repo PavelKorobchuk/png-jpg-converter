@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" ng-app="myTodo">
+<head>
+  <meta charset="UTF-8">
+  <title>MY APP</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+<body ng-controller="myController">
+     
+        <div id="todo-form" class="row">
+        <div class="load-wrapp" ng-show="loadingIsShow">
+            <div class="load-6">
+                <div class="letter-holder">
+                    <div class="l-1 letter">L</div>
+                    <div class="l-2 letter">o</div>
+                    <div class="l-3 letter">a</div>
+                    <div class="l-4 letter">d</div>
+                    <div class="l-5 letter">i</div>
+                    <div class="l-6 letter">n</div>
+                    <div class="l-7 letter">g</div>
+                    <div class="l-8 letter">.</div>
+                    <div class="l-9 letter">.</div>
+                    <div class="l-10 letter">.</div>
+                </div>
+            </div>
+        </div>
+    
+        <form  enctype="multipart/form-data" ng-if="!loadingIsShow">
+                <p>Choose file</p>
+                <input name="current-file" type="file" id="uploadFile" class="btn btn-default"> 
+                <p ng-if="selectFormatShow && !selectFormatError">Choose output format</p>
+                <p ng-if="selectFormatError">Unsupported format. Accesseble only for: [jpg, png, pdf] formats</p>
+                <select ng-model="outItem" data-ng-options="x.size for x in formatsArray" id="outputFormat" ng-if="selectFormatShow && !selectFormatError" ng-change="updateSelectOption(outItem)"></select>
+
+                <input type="button" id="convert-btn" ng-click="convertFile()" value="Convert it" ng-if="convertBtnShow && !selectFormatError" class="btn btn-default">
+        </form>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://use.fontawesome.com/f86bad28a1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.0/angular-route.min.js"></script>
+<script src="javascripts/myController.js"></script>
+<script src="javascripts/myService.js"></script>
+<script src="core.module.js"></script>
+</body>
+</html>
